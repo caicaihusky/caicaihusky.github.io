@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: java | Huksy loves the world</title>
+  <title>关于 Web 开发的初级笔记 | Huksy loves the world</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Huksy loves the world">
-<meta property="og:url" content="http://yoursite.com/tags/java/index.html">
+  <meta name="description" content="不定期更新
+转发和重定向的区别首先，转发是服务器行为，重定向是客户端行为。这可以从它们的运行过程进行分析。在转发的过程中，浏览器先给服务器发送 http 请求，服务器接收此请求后，调用容器内的方法完成处理和转发动作。注意，这里“转发”的路径必须是在同一个 web 容器下的 url，而不能转到其他的 web 路径上去。因此这里产生了一个判断方法：网址是任何一个web网址还是本站点下的网址。如果是任何">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于 Web 开发的初级笔记">
+<meta property="og:url" content="http://yoursite.com/2017/03/25/notes_02/index.html">
 <meta property="og:site_name" content="Huksy loves the world">
+<meta property="og:description" content="不定期更新
+转发和重定向的区别首先，转发是服务器行为，重定向是客户端行为。这可以从它们的运行过程进行分析。在转发的过程中，浏览器先给服务器发送 http 请求，服务器接收此请求后，调用容器内的方法完成处理和转发动作。注意，这里“转发”的路径必须是在同一个 web 容器下的 url，而不能转到其他的 web 路径上去。因此这里产生了一个判断方法：网址是任何一个web网址还是本站点下的网址。如果是任何">
+<meta property="og:updated_time" content="2017-03-25T06:03:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Huksy loves the world">
+<meta name="twitter:title" content="关于 Web 开发的初级笔记">
+<meta name="twitter:description" content="不定期更新
+转发和重定向的区别首先，转发是服务器行为，重定向是客户端行为。这可以从它们的运行过程进行分析。在转发的过程中，浏览器先给服务器发送 http 请求，服务器接收此请求后，调用容器内的方法完成处理和转发动作。注意，这里“转发”的路径必须是在同一个 web 容器下的 url，而不能转到其他的 web 路径上去。因此这里产生了一个判断方法：网址是任何一个web网址还是本站点下的网址。如果是任何">
   
     <link rel="alternative" href="/atom.xml" title="Huksy loves the world" type="application/atom+xml">
   
@@ -149,52 +156,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-notes_02" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/15/notes_01/" class="archive-article-date">
-  	<time datetime="2017-03-15T13:26:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/15/notes_01/">关于 javaIO 的一些笔记</a>
+    <h1 class="article-title" itemprop="name">
+      关于 Web 开发的初级笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/03/25/notes_02/" class="archive-article-date">
+  	<time datetime="2017-03-25T05:08:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>不定期更新</p>
+<h2 id="转发和重定向的区别"><a href="#转发和重定向的区别" class="headerlink" title="转发和重定向的区别"></a>转发和重定向的区别</h2><p>首先，转发是服务器行为，重定向是客户端行为。这可以从它们的运行过程进行分析。在转发的过程中，浏览器先给服务器发送 http 请求，服务器接收此请求后，调用容器内的方法完成处理和转发动作。注意，这里“转发”的路径必须是在同一个 web 容器下的 url，而不能转到其他的 web 路径上去。因此这里产生了一个判断方法：网址是任何一个web网址还是本站点下的网址。如果是任何一个其他 web 网址（且不为本站点的网址），那么所进行的动作就为重定向。接着分析，由于转发的行为是在同一个 web 容器下进行，且都在服务器端完成，因此 servlet 间共享的是一个 request，数据可以在不同的 servlet 和 jsp 之间传递。在重定向的过程中，在浏览器给服务器发送 http 请求，服务器接收此请求后，服务器给浏览器一个响应，告诉浏览器（客户端）“重新发送一个新的请求”给一个新的网址。而这个网址我们上文也提过了，可以是这个 web 容器内的网址，也可以是其他的网址。显然，这“重新发送的请求”和第一次发送的请求不是同一个请求，因此就形成了两个不同的 request，从而使得第二个 request 不能获得第一个 request 里的数据。</p>
+<p>   显式地观察，在转发行为中，浏览器的网址是不会发生改变的。因为最后转发到哪个网址，浏览器并不知道，它只完成了初次提交请求的动作，中间过程都由服务器负责。而在重定向行为里，网址会改变。因为它接收到了服务器的响应，并重新提交了新的 http 请求。</p>
+<h2 id="JSP-include-指令-include-动作的区别"><a href="#JSP-include-指令-include-动作的区别" class="headerlink" title="JSP include 指令 include 动作的区别"></a>JSP include 指令 include 动作的区别</h2><p>1.include 指令</p>
+<ul>
+<li><p>静态引入 web 资源，也就是说，被引入文件内容将作为使用 include 指令的 JSP 页面所生成的 Servlet 源码一部分而存在。若改变了被包含的文件，则主文件的代码就发生了变化，因此服务器会重新编译主文件。</p>
+</li>
+<li><p>可以改变 HTTP 响应头以及响应状态码</p>
+</li>
+<li><p>相对路径是相对于文件的</p>
+</li>
+<li><p>无论 JSP 文件的扩展名是不是.jsp，都会按照 JSP 页面处理</p>
+</li>
+<li><p>处理不存在的 web 资源时，会抛出异常</p>
+</li>
+</ul>
+<p>2.include 动作</p>
+<ul>
+<li><p>动态引入 web 资源。被包含的文件改变不会影响到主文件，因此服务器不会对主文件重新编译，而只需要重新编译被包含的文件即可，而对被包含文件的编译是在执行时才进行的，也就是说，只有当 include 动作被执行时，使用该标识包含的目标文件才会被编译，否则被包含的文件不会被编译</p>
+</li>
+<li><p>不可以改变 HTTP 响应头以及响应状态码</p>
+</li>
+<li><p>相对路径是相对于页面的</p>
+</li>
+<li><p>包含的文件如果是其他扩展名，会将内容当做静态文件处理</p>
+</li>
+<li>处理不存在的 web 资源时，会继续执行</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JSP</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">字节字符流</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Web</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -207,17 +240,86 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/25/notes_02/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/15/notes_01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于 javaIO 的一些笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -240,9 +342,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

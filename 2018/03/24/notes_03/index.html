@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: java | Huksy loves the world</title>
+  <title>KMP 算法的 Java 实现 | Huksy loves the world</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Huksy loves the world">
-<meta property="og:url" content="http://yoursite.com/tags/java/index.html">
+  <meta name="description" content="KMP 算法简介定义   Knuth-Morris-Pratt 字符串查找算法，简称为 “KMP算法”，常用于在一个文本串S内查找一个模式串P的出现位置，这个算法由Donald Knuth、Vaughan Pratt、James H. Morris三人于1977年联合发表，故取这3人的姓氏命名此算法。KMP算法的时间复杂度比朴素算法的要少，并且是线性时间复杂度，即预处理时间复杂度是O(m)，匹配时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP 算法的 Java 实现">
+<meta property="og:url" content="http://yoursite.com/2018/03/24/notes_03/index.html">
 <meta property="og:site_name" content="Huksy loves the world">
+<meta property="og:description" content="KMP 算法简介定义   Knuth-Morris-Pratt 字符串查找算法，简称为 “KMP算法”，常用于在一个文本串S内查找一个模式串P的出现位置，这个算法由Donald Knuth、Vaughan Pratt、James H. Morris三人于1977年联合发表，故取这3人的姓氏命名此算法。KMP算法的时间复杂度比朴素算法的要少，并且是线性时间复杂度，即预处理时间复杂度是O(m)，匹配时">
+<meta property="og:updated_time" content="2018-03-24T03:32:45.208Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Huksy loves the world">
+<meta name="twitter:title" content="KMP 算法的 Java 实现">
+<meta name="twitter:description" content="KMP 算法简介定义   Knuth-Morris-Pratt 字符串查找算法，简称为 “KMP算法”，常用于在一个文本串S内查找一个模式串P的出现位置，这个算法由Donald Knuth、Vaughan Pratt、James H. Morris三人于1977年联合发表，故取这3人的姓氏命名此算法。KMP算法的时间复杂度比朴素算法的要少，并且是线性时间复杂度，即预处理时间复杂度是O(m)，匹配时">
   
     <link rel="alternative" href="/atom.xml" title="Huksy loves the world" type="application/atom+xml">
   
@@ -149,75 +153,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-notes_03" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/15/notes_01/" class="archive-article-date">
-  	<time datetime="2017-03-15T13:26:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/15/notes_01/">关于 javaIO 的一些笔记</a>
+    <h1 class="article-title" itemprop="name">
+      KMP 算法的 Java 实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/03/24/notes_03/" class="archive-article-date">
+  	<time datetime="2018-03-24T02:42:37.442Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="KMP-算法简介"><a href="#KMP-算法简介" class="headerlink" title="KMP 算法简介"></a>KMP 算法简介</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>   Knuth-Morris-Pratt 字符串查找算法，简称为 “KMP算法”，常用于在一个文本串S内查找一个模式串P的出现位置，这个算法由Donald Knuth、Vaughan Pratt、James H. Morris三人于1977年联合发表，故取这3人的姓氏命名此算法。KMP算法的时间复杂度比朴素算法的要少，并且是线性时间复杂度，即预处理时间复杂度是O(m)，匹配时间复杂度是O(n)。</p>
+<p>   下面先直接给出KMP的算法流程：<br>1）假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置<br>如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++，继续匹配下一个字符；</p>
+<p>2）如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]。此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。</p>
+<p>3）换言之，当匹配失败时，模式串向右移动的位数为：失配字符所在位置 - 失配字符对应的 next 值，即移动的实际位数为：j - next[j]，且此值大于等于1。</p>
+<p>不难看出，KMP 算法的重点在于如何求 next 数组。</p>
+<p><strong>PS:</strong> next数组含义：代表在模式串P中，当前下标对应的字符之前的字符串中，有多大长度的相同前缀后缀。例如如果next [j] = k，代表在模式串P中，下标为j的字符之前的字符串中有最大长度为k 的相同前缀后缀。</p>
+<p>下面给出next数组求解方法：</p>
+<ul>
+<li>next[0] = -1;</li>
+<li>如果已知next[j] = k,如何求出next[j+1]呢?具体算法如下:</li>
+</ul>
+<p>1）如果p[j] = p[k], 则next[j+1] = next[k] + 1;</p>
+<p>2）如果p[j] != p[k], 则令k=next[k],如果此时p[j]==p[k],next[j+1]=k+1,如果不相等,则继续递归前缀索引,令 k=next[k],继续判断,直至k=-1(即k=next[0])或者p[j]=p[k]为止。</p>
+<p>下面给出求next数组的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public static int[] getNext(char[] p)&#123;</div><div class="line">		int pLen = p.length;</div><div class="line">		int[] next = new int[pLen];</div><div class="line">		int k = -1;</div><div class="line">		int j = 0;</div><div class="line">		next[0] = -1;</div><div class="line">		while(j &lt; pLen - 1)&#123;</div><div class="line">			if(k == -1 || p[j] == p[k])&#123;</div><div class="line">				k++;</div><div class="line">				j++;</div><div class="line">				next[j] = k;</div><div class="line">			&#125;else&#123;</div><div class="line">				k = next[k];</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return next;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样基本求next数组的方法就有了，但是，该算法依然有优化的空间。优化的点在于如果p[k] == k[next[k]]，则后面必然失配。因此，当出现 p[k] == k[next[k]]的情况时，需要再次递归，即next[k] = next[next[k]];</p>
+<p>下面给出优化的求 next 数组的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public static int[] getNext(char[] p)&#123;</div><div class="line">		int pLen = p.length;</div><div class="line">		int[] next = new int[pLen];</div><div class="line">		int k = -1;</div><div class="line">		int j = 0;</div><div class="line">		next[0] = -1;</div><div class="line">		while(j &lt; pLen - 1)&#123;</div><div class="line">			if(k == -1 || p[j] == p[k])&#123;</div><div class="line">				k++;</div><div class="line">				j++;</div><div class="line">				if(p[j] != p[k])&#123;</div><div class="line">					next[j] = k;</div><div class="line">				&#125;else&#123;</div><div class="line">					next[j] = next[k];</div><div class="line">				&#125;</div><div class="line">			&#125;else&#123;</div><div class="line">				k = next[k];</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return next;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样，求next数组的代码就已经实现了，下面给出KMP的算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public static int KMPindexOf(String Source,String Pattern)&#123;</div><div class="line">		int i = 0;</div><div class="line">		int j = 0;</div><div class="line">		char[] src = Source.toCharArray();</div><div class="line">		char[] ptn = Pattern.toCharArray();</div><div class="line">		int sLen = src.length;</div><div class="line">		int pLen = ptn.length;</div><div class="line">		int[] next = getNext(ptn);</div><div class="line">		while(i &lt; sLen &amp;&amp; j &lt; pLen)&#123;</div><div class="line">			if(j == -1 || src[i] == ptn[j])&#123;</div><div class="line">				i++;</div><div class="line">				j++;</div><div class="line">			&#125;else&#123;</div><div class="line">				j = next[j];</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		if(j == pLen)&#123;</div><div class="line">			return i - j;</div><div class="line">		&#125;</div><div class="line">		return -1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">字节字符流</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记/" class="article-tag-list-link color5">学习笔记</a>
+        			<a href="/categories/笔试记录/" class="article-tag-list-link color5">笔试记录</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/03/24/notes_03/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/25/notes_02/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于 Web 开发的初级笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -240,9 +327,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
